@@ -1,0 +1,172 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="CMaster.master.cs" Inherits="TCMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+    
+  
+    
+  <script type="text/javascript" src="js/yahoo.js"></script>
+  <script type="text/javascript" src="js/event.js" ></script>
+  <script type="text/javascript" src="js/dom.js" ></script>
+  <script type="text/javascript" src="js/calendar.js" ></script>
+  
+  <script type="text/javascript">
+    YAHOO.namespace("example.calendar");
+    function init() {        
+        YAHOO.example.calendar.cal1 = new YAHOO.widget.Calendar("YAHOO.example.calendar.cal1","cal1Container");
+        YAHOO.example.calendar.cal1.title = "Select the desired workout day:";
+        YAHOO.example.calendar.cal1.onSelect = setDate1;
+        YAHOO.example.calendar.cal1.render();
+    }
+    function showCalendar1(txtDateClientID,btnCalendarID) {
+        this.link1 = document.getElementById(btnCalendarID);
+        this.oTxtDate = document.getElementById(txtDateClientID);
+        var pos = YAHOO.util.Dom.getXY(link1);
+        YAHOO.example.calendar.cal1.oDomContainer.style.display='block';
+        YAHOO.util.Dom.setXY(YAHOO.example.calendar.cal1.oDomContainer, [pos[0],pos[1]+link1.offsetHeight+1]);
+    }
+    function setDate1() {
+        var date1 = YAHOO.example.calendar.cal1.getSelectedDates()[0];
+        YAHOO.example.calendar.cal1.oDomContainer.style.display='none';
+        date1 = new Date(date1);
+        var formattedDate = new Date(date1);
+        oTxtDate.value = formattedDate.getDate()+'/'+ (formattedDate.getMonth() +1) +'/'+ formattedDate.getFullYear();
+    }
+    
+      YAHOO.util.Event.addListener(window, "load", init);
+     
+
+
+  </script> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <style>
+        .body{
+            font-family:'Cera Stencil';
+            background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        }
+        #Table1{
+            
+            font-family:'Cera Stencil';
+        }
+        #menu1{
+             font-family:'Cera Stencil';
+        }
+        
+    </style>
+    
+</head>
+<body class="body">
+    <form id="form1" runat="server">
+   	  <div class="container">
+    <table id="Table1" cellpadding="0" cellspacing="0" runat="server" border="1" width="100%">    
+     <tr>     
+      <td rowspan="0" height="100%" background="images/bgleft.jpg" style="background-position:right top; background-repeat:repeat-y;"></td>
+      <td rowspan="0"  bgcolor="#000000" valign="top"></td>
+      <td colspan="0" valign="top" style="height: 103px">
+      <img src="Educational images/e15.png" style="width: 100%" id="IMG1" language="javascript" onclick="return IMG1_onclick()" />  
+      </td>      
+      <td rowspan="0" bgcolor="#000000" style="width: 1px"> </td>
+      
+      <td rowspan="0"  height="100%" background="images/bgright.jpg" style="background-position:left top; background-repeat:repeat-y"></td>
+      
+     </tr>
+        
+     <tr>
+      
+      <td colspan="3"  style="height: 34px;" >       
+       <table align="center">
+        <tr>
+         <td valign="top" >
+         <asp:Menu ID="menu1" runat="server" CssClass="btn btn-primary"  DynamicHorizontalOffset="9"  ForeColor="Black"  Orientation="Horizontal" StaticSubMenuIndent="10px" ItemWrap="True" StaticBottomSeparatorImageUrl="~/Images/stringline.jpg" StaticEnableDefaultPopOutImage="False" Width="100%">
+           <StaticMenuItemStyle Font-Size="Large"  HorizontalPadding="15px"  VerticalPadding="10px" BorderStyle="None"  Font-Underline="False" ForeColor="Black" ItemSpacing="20px" />
+           <DynamicHoverStyle  ForeColor="Black" />
+           <DynamicMenuStyle ForeColor="Black" CssClass="btn btn-primary" />
+           <StaticSelectedStyle ForeColor="Black"  />
+           <DynamicMenuItemStyle HorizontalPadding="15px" VerticalPadding="12px" />
+           <Items >
+               <asp:MenuItem Text="Home"   Value="Home" NavigateUrl="~/Main.aspx"></asp:MenuItem>
+               <asp:MenuItem Text="Management" Value="Management">
+                   <asp:MenuItem Text="Registration" Value="Registration" NavigateUrl="~/StudentReg.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Staff" Value="Staff"  NavigateUrl="~/Default3.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Course" Value="Course" NavigateUrl="~/Course.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Library Books" Value="Library Books" NavigateUrl="~/LibraryDetails.aspx"></asp:MenuItem>
+               </asp:MenuItem>
+               <asp:MenuItem Text="Students" Value="Students">
+                   <asp:MenuItem Text="Attendance" Value="Attendance" NavigateUrl="~/Attend.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Semester Marks Entry" Value="Semester Marks Entry" NavigateUrl="~/Marks.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Library Entry" Value="Library Entry" NavigateUrl="~/LibraryEntry.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Lab Entry" Value="Lab Entry" NavigateUrl="~/LabEntry.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Students" Value="Students" NavigateUrl="~/StudentDetails.aspx"></asp:MenuItem>
+               </asp:MenuItem>
+               <asp:MenuItem Text="Office" Value="Office">
+                   <asp:MenuItem Text="Students Fees" Value="Students Fees" NavigateUrl="~/StudentFees.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Payslips" Value="Payslips" NavigateUrl="~/PaySlipNew.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Examination Entry" Value="Examination Entry" NavigateUrl="~/Exam.aspx"></asp:MenuItem>
+               </asp:MenuItem>
+               
+               <asp:MenuItem Text="Reports" Value="Reports">
+                   <asp:MenuItem Text="Staff " Value="Staff ">
+                       <asp:MenuItem Text="Staff Report" Value="Staff Report" NavigateUrl="~/StaffReport.aspx"></asp:MenuItem>
+                       <asp:MenuItem Text="PaySlip Report" Value="PaySlip Report" NavigateUrl="~/PaySlipReport.aspx"></asp:MenuItem>
+                   </asp:MenuItem>
+                       <asp:MenuItem Text="Student Reg. Report" Value="Student Registration Report" NavigateUrl="~/StudentRegReport.aspx">
+                       </asp:MenuItem>
+                   <asp:MenuItem Text="Attendance Report" Value="Attendance Report" NavigateUrl="~/NewAttendReport.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Course Report" Value="Course Report" NavigateUrl="~/CourseReport.aspx"></asp:MenuItem>
+                       <asp:MenuItem Text="Students Sem Fee" Value="Students Sem Fee" NavigateUrl="~/StudentSemFeeReport.aspx"></asp:MenuItem>
+                   
+                       <asp:MenuItem Text="Library Books Report" Value="Library Books Report" NavigateUrl="~/LibBooksReport.aspx"></asp:MenuItem>
+                       
+                   
+                   <asp:MenuItem Text="Marks Report" Value="Marks Report" NavigateUrl="~/MarksReport.aspx"></asp:MenuItem>
+                   <asp:MenuItem Text="Examination" Value="Examination" NavigateUrl="~/ExamReport.aspx"></asp:MenuItem>
+               </asp:MenuItem>
+               <asp:MenuItem Text="Logout" Value="Logout" NavigateUrl="~/Login.aspx"></asp:MenuItem>
+           </Items>
+           <StaticHoverStyle ForeColor="White" CssClass="MenuText" Font-Underline="False" />
+           <StaticMenuStyle BackColor="white" CssClass="MenuText" />
+       </asp:Menu>     
+         </td>
+        </tr>
+       </table>
+        
+      </td>        
+     </tr>
+     <tr>
+     <td colspan="2" style="height: 111%" valign="top">
+     <table id="Table2" cellspacing="0" cellpadding="0" border="0" runat="server" style="height:470px; width:100%">
+      <tr>
+       <td valign="top">
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+       
+     </asp:contentplaceholder>   
+        
+       </td>
+      </tr>
+     </table>
+      
+     </td>     
+     </tr>  
+     <tr>
+     <td colspan="2" bgcolor="#cccccc" align="center" valign="top">
+     <asp:Label ID="lblfooter" runat="server">&copy Copyright@2019 Garayev Elbrus</asp:Label>
+     </td>
+     </tr>   
+    </table>   
+    </div>
+   
+    
+   	<div id="cal1Container" style="position: absolute; display: none;"/>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+</body>
+</html>

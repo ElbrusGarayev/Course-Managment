@@ -1,0 +1,161 @@
+<%@ Master Language="VB" CodeFile="Master.master.vb" Inherits="Master" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+      <link href="CSS/fonts.css" type="text/css" rel="stylesheet"/>
+  <link href="CSS/reset.css" type="text/css" rel="stylesheet"/>
+  <link href="CSS/dpSyntaxHighlighter.css" type="text/css" rel="stylesheet"/>
+  <link href="CSS/calendar.css" type="text/css" rel="stylesheet"/>
+    
+  <script type="text/javascript" src="js/yahoo.js"></script>
+  <script type="text/javascript" src="js/event.js" ></script>
+  <script type="text/javascript" src="js/dom.js" ></script>
+  <script type="text/javascript" src="js/calendar.js" ></script>
+  
+  <script type="text/javascript">
+    YAHOO.namespace("example.calendar");
+    function init() {        
+        YAHOO.example.calendar.cal1 = new YAHOO.widget.Calendar("YAHOO.example.calendar.cal1","cal1Container");
+        YAHOO.example.calendar.cal1.title = "Select the desired workout day:";
+        YAHOO.example.calendar.cal1.onSelect = setDate1;
+        YAHOO.example.calendar.cal1.render();
+    }
+    function showCalendar1(txtDateClientID,btnCalendarID) {
+        this.link1 = document.getElementById(btnCalendarID);
+        this.oTxtDate = document.getElementById(txtDateClientID);
+        var pos = YAHOO.util.Dom.getXY(link1);
+        YAHOO.example.calendar.cal1.oDomContainer.style.display='block';
+        YAHOO.util.Dom.setXY(YAHOO.example.calendar.cal1.oDomContainer, [pos[0],pos[1]+link1.offsetHeight+1]);
+    }
+    function setDate1() {
+        var date1 = YAHOO.example.calendar.cal1.getSelectedDates()[0];
+        YAHOO.example.calendar.cal1.oDomContainer.style.display='none';
+        date1 = new Date(date1);
+        var formattedDate = new Date(date1);
+        oTxtDate.value = formattedDate.getDate()+'/'+ (formattedDate.getMonth() +1) +'/'+ formattedDate.getFullYear();
+    }
+    
+    YAHOO.util.Event.addListener(window, "load", init); 
+    
+  </script> 
+</head>
+<body topmargin="0">
+    <form id="form1" runat="server">
+    <div>
+        <div>
+        <div>
+    <table id="Table1" cellpadding="0" cellspacing="0" runat="server" border="0" width="100%">    
+     <tr>     
+      <td rowspan="10" height="100%" width="1200" background="images/bgleft.jpg" style="background-position:right top; background-repeat:repeat-y; width: 4%"></td>
+      <td rowspan="10" width="1"  bgcolor="#000000" valign="top"></td>
+      <td colspan="2" valign="top" style="height: 103px">
+      <img src="" height="200px" style="width: 1221px" />  
+      </td>      
+      <td rowspan="10" bgcolor="#000000" style="width: 1px"> </td>
+      
+      <td rowspan="10" width="4%" height="100%" background="images/bgright.jpg" style="background-position:left top; background-repeat:repeat-y"></td>
+      
+     </tr>
+     <tr>
+      <td colspan="2"  style="height: 34px" align="left">
+      <table width="100%" cellpadding="0" cellspacing="0" runat="server">
+      <tr>
+      <td style="width:200px">
+      
+      </td>
+       <td>
+       <asp:Menu ID="menu1" runat="server" BackColor="#E3EAEB" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#666666" Orientation="Horizontal" StaticSubMenuIndent="10px">
+           <StaticMenuItemStyle Font-Size="Medium" HorizontalPadding="5px" VerticalPadding="2px" />
+           <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
+           <DynamicMenuStyle BackColor="#E3EAEB" />
+           <StaticSelectedStyle BackColor="#1C5E55" />
+           <DynamicSelectedStyle BackColor="#1C5E55" />
+           <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+           <Items>
+               <asp:MenuItem Text="Home" Value="Home"></asp:MenuItem>
+               <asp:MenuItem Text="Maintenance" Value="Maintenance">
+                   <asp:MenuItem Text="Registration" Value="Registration"></asp:MenuItem>
+                   <asp:MenuItem Text="Staff" Value="Staff"></asp:MenuItem>
+                   <asp:MenuItem Text="Course" Value="Course"></asp:MenuItem>
+                   <asp:MenuItem Text="Library Books" Value="Library Books"></asp:MenuItem>
+               </asp:MenuItem>
+               <asp:MenuItem Text="Students" Value="Students">
+                   <asp:MenuItem Text="Attendance" Value="Attendance"></asp:MenuItem>
+                   <asp:MenuItem Text="Semester Marks Entry" Value="Semester Marks Entry"></asp:MenuItem>
+                   <asp:MenuItem Text="Library Entry" Value="Library Entry"></asp:MenuItem>
+                   <asp:MenuItem Text="Lab Entry" Value="Lab Entry"></asp:MenuItem>
+                   <asp:MenuItem Text="Students" Value="Students"></asp:MenuItem>
+               </asp:MenuItem>
+               <asp:MenuItem Text="Office" Value="Office">
+                   <asp:MenuItem Text="Students Fees" Value="Students Fees"></asp:MenuItem>
+                   <asp:MenuItem Text="Payslips" Value="Payslips"></asp:MenuItem>
+                   <asp:MenuItem Text="Examination Entry" Value="Examination Entry"></asp:MenuItem>
+               </asp:MenuItem>
+               <asp:MenuItem Text="Hostel" Value="Hostel">
+                   <asp:MenuItem Text="Registration" Value="Registration"></asp:MenuItem>
+                   <asp:MenuItem Text="Fees" Value="Fees"></asp:MenuItem>
+               </asp:MenuItem>
+               <asp:MenuItem Text="Reports" Value="Reports">
+                   <asp:MenuItem Text="Staff " Value="Staff ">
+                       <asp:MenuItem Text="Staff Report" Value="Staff Report"></asp:MenuItem>
+                       <asp:MenuItem Text="PaySlip Report" Value="PaySlip Report"></asp:MenuItem>
+                   </asp:MenuItem>
+                   <asp:MenuItem Text="Registration" Value="Registration">
+                       <asp:MenuItem Text="Student Registration Report" Value="Student Registration Report">
+                       </asp:MenuItem>
+                       <asp:MenuItem Text="Hostel Registration Report" Value="Hostel Registration Report"></asp:MenuItem>
+                   </asp:MenuItem>
+                   <asp:MenuItem Text="Attendance Report" Value="Attendance Report"></asp:MenuItem>
+                   <asp:MenuItem Text="Course Report" Value="Course Report"></asp:MenuItem>
+                   <asp:MenuItem Text="Fees" Value="Fees">
+                       <asp:MenuItem Text="Students Sem Fee" Value="Students Sem Fee"></asp:MenuItem>
+                       <asp:MenuItem Text="Hostel Fee" Value="Hostel Fee"></asp:MenuItem>
+                   </asp:MenuItem>
+                   <asp:MenuItem Text="Library" Value="Library">
+                       <asp:MenuItem Text="Library Books Report" Value="Library Books Report"></asp:MenuItem>
+                       <asp:MenuItem Text="Library Entry" Value="Library Entry"></asp:MenuItem>
+                   </asp:MenuItem>
+                   <asp:MenuItem Text="Marks Report" Value="Marks Report"></asp:MenuItem>
+                   <asp:MenuItem Text="Examination" Value="Examination"></asp:MenuItem>
+               </asp:MenuItem>
+               <asp:MenuItem Text="Logout" Value="Logout"></asp:MenuItem>
+           </Items>
+           <StaticHoverStyle BackColor="#666666" ForeColor="White" Font-Size="Medium" />
+       </asp:Menu>      
+       </td>
+      </tr>
+      </table>       
+      </td>        
+     </tr>
+     <tr>
+     <td colspan="2" style="height: 107%" valign="top">
+     <table cellspacing="0" cellpadding="0" border="0" runat="server" style="height:470px; width:100%">
+      <tr>
+       <td valign="top">
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+       
+       
+     </asp:contentplaceholder>   
+        
+       </td>
+      </tr>
+     </table>
+      
+     </td>     
+     </tr>  
+     <tr>
+     <td colspan="2" bgcolor="#cccccc" align="center" valign="top">
+     <asp:Label ID="lblfooter" runat="server">&copy ccc.com</asp:Label>
+     </td>
+     </tr>   
+    </table>   
+    </div>
+    </div>
+    
+    </div>
+    </form>
+</body>
+</html>
